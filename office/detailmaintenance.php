@@ -163,6 +163,7 @@ require 'controllers/c_detailmaintenance.php';
                                             <a class="on-default edit-row badge badge-info" data-toggle="modal" data-target="#modaleditfaktur<?= $row['id'] ?>"><i class="fa fa-pencil"></i></a> |
                                             <a href="models/hapus.php?code=hapuspembayaran&id=<?= $row["id"] ?>" onClick="if(confirm('Apakah anda yakin menghapus data proyek ini ?')){return true}else{return false}" class="on-default remove-row badge badge-danger"><i class="fa fa-trash-o"></i></a>
                                         </td>
+
                                     </tr>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>

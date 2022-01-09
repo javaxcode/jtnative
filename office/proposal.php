@@ -1,7 +1,7 @@
 <?php
 require '../include/fungsi.php';
 require '../include/fungsi_rupiah.php';
-require '../controllers/office/auth.php';
+require 'controllers/c_auth.php';
 require '../include/header.php';
 require '../include/topbar.php';
 require '../include/sidebar.php';
@@ -157,13 +157,13 @@ require 'controllers/c_proposal.php';
                                         <td><?= number_format($row['nilaiproyek']) ?></td>
                                         <td>
                                             <?php if ($row['status'] != 1) : ?>
-                                                <a href="../models/inputproyek.php?ip=<?= $row['id'] ?>" class="on-default edit-row badge badge-warning"><i class="fa fa-question"></i></a>
+                                                <a href="models/inputproyek.php?ip=<?= $row['id'] ?>" class="on-default edit-row badge badge-warning"><i class="fa fa-question"></i></a>
                                             <?php else : ?>
                                                 <a class="on-default edit-row badge badge-success"><i class="fa fa-check"></i></a>
                                             <?php endif ?>
                                             |
                                             <a class="on-default edit-row badge badge-info" data-toggle="modal" data-target="#modaleditfaktur<?= $row['id'] ?>"><i class="fa fa-pencil"></i></a> |
-                                            <a href="../models/hapus.php?code=hapusproposal&id=<?= $row["id"] ?>" onClick="if(confirm('Apakah anda yakin menghapus data unit ini ?')){return true}else{return false}" class="on-default remove-row badge badge-danger"><i class="fa fa-trash-o"></i></a>
+                                            <a href="models/hapus.php?code=hapusproposal&id=<?= $row["id"] ?>" onClick="if(confirm('Apakah anda yakin menghapus data unit ini ?')){return true}else{return false}" class="on-default remove-row badge badge-danger"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                         <div id="modaleditfaktur<?= $row['id'] ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">
@@ -172,7 +172,7 @@ require 'controllers/c_proposal.php';
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         <h2 class="modal-title">Edit Proposal</h2>
                                                     </div>
-                                                    <form method="post" action="../models/edit">
+                                                    <form method="post" action="models/edit">
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -357,7 +357,7 @@ require 'controllers/c_proposal.php';
 
                 <div class="modal-body">
                     <div class="row">
-                        <form method="post" action="../models/input">
+                        <form method="post" action="models/input">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="field-5" class="control-label">Nama Marketing </label>
@@ -390,7 +390,7 @@ require 'controllers/c_proposal.php';
                                         <?= ucwords($row['marketing']) ?>
                                     </td>
                                     <td>
-                                        <a href="../models/hapus.php?code=hapusmarketing&id=<?= $row["id"] ?>" onClick="if(confirm('Apakah anda yakin menghapus data marketing ini ?')){return true}else{return false}" class="on-default remove-row badge badge-danger"><i class="fa fa-trash-o"></i></a>
+                                        <a href="models/hapus.php?code=hapusmarketing&id=<?= $row["id"] ?>" onClick="if(confirm('Apakah anda yakin menghapus data marketing ini ?')){return true}else{return false}" class="on-default remove-row badge badge-danger"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
