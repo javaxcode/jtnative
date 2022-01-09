@@ -42,7 +42,7 @@ require 'controllers/login.php';
     <div class="clearfix"></div>
     <div class="wrapper-page">
         <div class="text-center">
-            <a href="index.html" class="logo"><span>Java<span>Technic Jakarta</span></span></a>
+            <a href="index.html" class="logo"><span>Java<span>Technic Jakarta zazai</span></span></a>
             <h5 class="text-muted m-t-0 font-600">Kitchen Equipment | Cold Storage | Maintenance</h5>
         </div>
         <div class="m-t-40 card-box">
