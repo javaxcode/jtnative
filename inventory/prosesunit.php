@@ -1,7 +1,7 @@
-<?php 
+<?php
 require '../include/fungsi.php';
 
-if ($_POST['tambahan']!="tambahan") {
+if ($_POST['tambahan'] != "tambahan") {
 	$tanggalsaja = $_POST['tanggalsaja']; // Ambil data nis dan masukkan ke variabel nis
 	$tanggaljtsaja = $_POST["tanggaljtsaja"];
 	$suppliersaja = $_POST["suppliersaja"];
@@ -34,18 +34,18 @@ $status = 1;
 $query = "INSERT INTO pembelianunit VALUES";
 
 $index = 0; // Set index array awal dengan 0
-foreach($tanggal as $tanggalnis){ // Kita buat perulangan berdasarkan nis sampai data terakhir
-	$hb = $harga[$index] - (($harga[$index]*$diskon[$index])/100);
-	$hargabeli = $hb + ($hb*$ppn[$index])/100;
-	$totalharga = $jumlah[$index]*$hargabeli;
-	$query .= "('','".$tanggalnis."','".$supplier[$index]."','".$tanggaljt[$index]."','".$nofaktur[$index]."','".$unit[$index]."','".$merk[$index]."','".$harga[$index]."','".$diskon[$index]."','".$ppn[$index]."','".$hargabeli."','".$jumlah[$index]."','".$totalharga."','".$status."'),";
+foreach ($tanggal as $tanggalnis) { // Kita buat perulangan berdasarkan nis sampai data terakhir
+	$hb = $harga[$index] - (($harga[$index] * $diskon[$index]) / 100);
+	$hargabeli = $hb + ($hb * $ppn[$index]) / 100;
+	$totalharga = $jumlah[$index] * $hargabeli;
+	$query .= "('','" . $tanggalnis . "','" . $supplier[$index] . "','" . $tanggaljt[$index] . "','" . $nofaktur[$index] . "','" . $unit[$index] . "','" . $merk[$index] . "','" . $harga[$index] . "','" . $diskon[$index] . "','" . $ppn[$index] . "','" . $hargabeli . "','" . $jumlah[$index] . "','" . $totalharga . "','" . $status . "'),";
 	$index++;
 }
 
 // Kita hilangkan tanda koma di akhir query
 // sehingga kalau di echo $query nya akan sepert ini : (contoh ada 2 data siswa)
 // INSERT INTO siswa VALUES('1011001','Rizaldi','Laki-laki','089288277372','Bandung'),('1011002','Siska','Perempuan','085266255121','Jakarta');
-$query = substr($query, 0, strlen($query) - 1).";";
+$query = substr($query, 0, strlen($query) - 1) . ";";
 
 // Eksekusi $query
 mysqli_query($conn, $query);
