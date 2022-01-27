@@ -1,5 +1,5 @@
 <?php
-require '../include/fungsi.php';
+require '../../include/fungsi.php';
 
 
 if (isset($_POST["editproposal"])) {
@@ -28,14 +28,14 @@ if (isset($_POST["editproposal"])) {
     if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
-                document.location.href = '../office/proposal';                
+                document.location.href = '../proposal';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Edit Proyek Gagal');             
-                document.location.href = '../office/proposal';                
+                document.location.href = '../proposal';                
             </script>
             ";
     }

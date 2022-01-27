@@ -1,5 +1,5 @@
 <?php
-require '../include/fungsi.php';
+require '../../include/fungsi.php';
 
 if ($_GET["code"] == "hapusmarketing") {
 	$id = $_GET["id"];
@@ -7,14 +7,14 @@ if ($_GET["code"] == "hapusmarketing") {
 	if (hapusmarketing($id) > 0) {
 		echo "          
 	            <script>
-	                document.location.href = '../office/proposal';
+	                document.location.href = '../proposal';
 	            </script>
 	            ";
 	} else {
 		echo "
 	            <script>
 	                alert('data gagal dihapus');
-	                document.location.href = '../office/proposal';
+	                document.location.href = '../proposal';
 	            </script>
 	            ";
 	}
@@ -25,14 +25,14 @@ if ($_GET["code"] == "hapusmarketing") {
 	if (hapusproposal($id) > 0) {
 		echo "          
 	            <script>
-	                document.location.href = '../office/proposal';
+	                document.location.href = '../proposal';
 	            </script>
 	            ";
 	} else {
 		echo "
 	            <script>
 	                alert('data gagal dihapus');
-	                document.location.href = '../office/proposal';
+	                document.location.href = '../proposal';
 	            </script>
 	            ";
 	}
@@ -43,14 +43,14 @@ if ($_GET["code"] == "hapusmarketing") {
 	if (hapusproyek($id) > 0) {
 		echo "          
 	            <script>
-	                document.location.href = '../office/proyek';
+	                document.location.href = '../proyek';
 	            </script>
 	            ";
 	} else {
 		echo "
 	            <script>
 	                alert('data gagal dihapus');
-	                document.location.href = '../office/proyek';
+	                document.location.href = '../proyek';
 	            </script>
 	            ";
 	}
@@ -63,14 +63,14 @@ if ($_GET["code"] == "hapusmarketing") {
 	if (hapuspembayaran($id) > 0) {
 		echo "          
 	            <script>
-	                document.location.href = '../office/detailproyek.php?kp=$kp';
+	                document.location.href = '../detailproyek.php?kp=$kp';
 	            </script>
 	            ";
 	} else {
 		echo "
 	            <script>
 	                alert('data gagal dihapus');
-	                document.location.href = '../office/detailproyek?kp=$kp';
+	                document.location.href = '../detailproyek?kp=$kp';
 	            </script>
 	            ";
 	}

@@ -1,5 +1,5 @@
 <?php
-require '../include/fungsi.php';
+require '../../include/fungsi.php';
 
 if (isset($_POST["inputmarketing"])) {
     $kodemarketing = query("SELECT * FROM marketing ORDER BY id DESC LIMIT 1")[0];
@@ -30,14 +30,14 @@ if (isset($_POST["inputmarketing"])) {
         echo "
             <script>
                 alert('Input marketing berhasil');
-                document.location.href = '../office/proposal';                
+                document.location.href = '../proposal';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Input marketing gagal');                
-                document.location.href = '../office/proposal';                
+                document.location.href = '../proposal';                
             </script>
             ";
     }
@@ -50,19 +50,21 @@ if (isset($_POST["inputmarketing"])) {
     $tang = $tahtl . '-' . $bul . '-' . $tatl;
     $tanggal = date('Y-m-d', strtotime($tang));
 
-    $kodeproyek = "PRO";
+
     $t = substr($ttl, 8, 2);
+    $kodeproyek = "PRO" . $t . $bul . "0" . $tatl;
     $kodebulan = $t . $bul;
 
-    $kas = query("SELECT * FROM proposal WHERE month(tanggalpro) ='$bul' ORDER BY id DESC LIMIT 1")[0];
-    if ($kas['kodebulan'] != $kodebulan) {
-        $newkodetr = "001";
+    $kas = query("SELECT * FROM proyekjt WHERE month(tanggalpro) ='$bul' ORDER BY id DESC LIMIT 1")[0];
+    if ($kas['tanggalpro'] != $kodebulan) {
+        // $newkodetr = "001";
     } else {
-        $lastkode = query("SELECT * FROM proposal WHERE kodepro ='PRO' AND month(tanggalpro) ='$bul' ORDER BY id DESC LIMIT 1")[0];
+        $lastkode = query("SELECT * FROM proyekjt WHERE noproposal ='$kodeproyek' AND month(tanggalpro) ='$tang' ORDER BY id DESC LIMIT 1")[0];
         $lk = $lastkode['kodetr'];
         $noUrut = (int) $lastkode['kodetr'];
         $noUrut++;
-        $newkodetr = sprintf("%03s", $noUrut);
+        // $newkodetr = sprintf("%03s", $noUrut);
+        $newkodetr = "PJT" . $t . $bul . "0" . $tatl;
     }
 
     $namaklien = htmlspecialchars($_POST["namaklien"]);
@@ -75,9 +77,9 @@ if (isset($_POST["inputmarketing"])) {
 
 
     //query insert data
-    $query = "INSERT INTO proposal 
+    $query = "INSERT INTO proyekjt 
                 VALUES 
-                ('','$tanggal','$kodeproyek','$kodebulan','$newkodetr','$namaklien','$outlet','$tempat','$pekerjaan','$nilaiproyek','$keterangan','$status')
+                ('','$tanggal','$tanggal','$kodeproyek','$newkodetr','$namaklien','$outlet','$tempat','$pekerjaan','$nilaiproyek','$keterangan','$status','')
             ";
     mysqli_query($conn, $query);
 
@@ -87,14 +89,14 @@ if (isset($_POST["inputmarketing"])) {
         echo "
             <script>
                 alert('Input Proyek berhasil');
-                document.location.href = '../office/proposal';                
+                document.location.href = '../proposal';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Input Proyek Gagal');                
-                document.location.href = '../office/proposal';                
+                document.location.href = '../proposal';                
             </script>
             ";
     }
@@ -119,7 +121,7 @@ if (isset($_POST["inputmarketing"])) {
         echo "
             <script>
                 alert('Input Tanggal tidak sesuai dengan bulan ini');
-                document.location.href = '../office/kaskecil';                    
+                document.location.href = '../kaskecil';                    
             </script>
             ";
         return false;
@@ -151,7 +153,7 @@ if (isset($_POST["inputmarketing"])) {
     //query insert data
     $query = "INSERT INTO kas 
                 VALUES 
-                ('','$tanggal','$kodekas','$kodebulan','$newkodetr','$payto','$keterangan','$input','$output','$saldo','$kodeakun')
+                ('','$tanggal','$kodekas','$a','$newkodetr','$payto','$keterangan','$input','$output','$saldo','$kodeakun')
             ";
     mysqli_query($conn, $query);
 
@@ -161,14 +163,14 @@ if (isset($_POST["inputmarketing"])) {
         echo "
             <script>
                 alert('Input Pemasukan Kas berhasil');
-                document.location.href = '../office/kaskecil';                
+                document.location.href = '../kaskecil';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Input Pemasukan Kas Gagal');                
-                document.location.href = '../office/kaskecil';                
+                document.location.href = '../kaskecil';                
             </script>
             ";
     }
@@ -187,13 +189,13 @@ if (isset($_POST["inputmarketing"])) {
     $butl = substr($date->format('Y-m-d'), 5, 2);
     $thl = substr($date->format('Y-m-d'), 2, 2);
     $kodekas = "KK";
-    $kodebulan = $thl . $butl;
+    $a = $thl . $butl;
 
     if ($butli != $butl) {
         echo "
             <script>
                 alert('Input Tanggal tidak sesuai dengan bulan ini');
-                document.location.href = '../office/kaskecil';                    
+                document.location.href = '../kaskecil';                    
             </script>
             ";
         return false;
@@ -234,14 +236,14 @@ if (isset($_POST["inputmarketing"])) {
         echo "
             <script>
                 alert('Input Pengeluaran Kas berhasil');
-                document.location.href = '../office/kaskecil';                
+                document.location.href = '../kaskecil';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Input Pengeluaran Kas Gagal');                
-                document.location.href = '../office/kaskecil';                
+                document.location.href = '../kaskecil';                
             </script>
             ";
     }

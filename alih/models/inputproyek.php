@@ -1,5 +1,5 @@
 <?php
-require '../../include/fungsi.php';
+require '../include/fungsi.php';
 
 $id = $_GET["ip"];
 $p = query("SELECT * FROM proposal WHERE id = '$id' ")[0];

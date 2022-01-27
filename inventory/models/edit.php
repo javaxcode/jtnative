@@ -1,5 +1,5 @@
 <?php
-require '../include/fungsi.php';
+require '../../include/fungsi.php';
 
 if (isset($_POST["editfaktur"])) {
     $id = htmlspecialchars($_POST["id"]);

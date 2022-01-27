@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 //koneksi database
-$conn = mysqli_connect('localhost', 'root','','javatechnic_jt');
+$conn = mysqli_connect('localhost', 'root', '', 'javatechnic_jt');
 //$conn = mysqli_connect('localhost', 'root','','u8953447_jt');
 //$conn = mysqli_connect('javaxcode.net', 'u8953447_javatechnic','212jt212','u8953447_jt');
 // $conn = mysqli_connect('javatechnic.co.id','javatechnic_jtcoid','1qjlkTA.Bbf@', 'javatechnic_jt');
@@ -11,59 +11,61 @@ $conn = mysqli_connect('localhost', 'root','','javatechnic_jt');
 // echo "Koneksi berhasil";
 // mysqli_close($conn);
 
-function query($query) {
+function query($query)
+{
 	global $conn;
-	$result = mysqli_query($conn, $query );
+	$result = mysqli_query($conn, $query);
 	$rows = [];
-	while( $row = mysqli_fetch_assoc($result) ) {
-		$rows [] = $row;
+	while ($row = mysqli_fetch_assoc($result)) {
+		$rows[] = $row;
 	}
 	return $rows;
 }
 
-function queryy($queryy) {
+function queryy($queryy)
+{
 	global $conn;
-	$resultt = mysqli_query($conn, $queryy );
+	$resultt = mysqli_query($conn, $queryy);
 	$rowss = [];
-	while( $roww = mysqli_fetch_assoc($resultt) ) {
-		$rowss [] = $roww;
+	while ($roww = mysqli_fetch_assoc($resultt)) {
+		$rowss[] = $roww;
 	}
 	return $rowss;
 }
 
-function postfoto ($ft) {
-	
+function postfoto($ft)
+{
+
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	global $conn;
 	$tangg = ($_POST["tang"]);
-    $tang = date('Y-m-d',strtotime($tangg));
-    $jam = ($_POST["jam"]);
-    $judul = htmlspecialchars($pp["judul"]);
-    $kategori = htmlspecialchars($pp["kategori"]);    
-    $kontent = $pp["kontent"];
-    
-    $gambar = upload();
-    if (!$gambar) {
-        return false;
-    }
+	$tang = date('Y-m-d', strtotime($tangg));
+	$jam = ($_POST["jam"]);
+	$judul = htmlspecialchars($pp["judul"]);
+	$kategori = htmlspecialchars($pp["kategori"]);
+	$kontent = $pp["kontent"];
 
-   
+	$gambar = upload();
+	if (!$gambar) {
+		return false;
+	}
 
-    //query insert data
-     $query = "UPDATE admin SET 
+
+
+	//query insert data
+	$query = "UPDATE admin SET 
 	    
 	    foto = '$gambar'                
-	    WHERE id = $id
-	    ";
-    mysqli_query($conn, $query);
+	    WHERE id = '$id'";
+	mysqli_query($conn, $query);
 
-    return mysqli_affected_rows($conn);
-
+	return mysqli_affected_rows($conn);
 }
 
-function upload() {
+function upload()
+{
 	$namaFile = $_FILES['gambar']['name'];
 	$ukuranFile = $_FILES['gambar']['size'];
 	$error = $_FILES['gambar']['error'];
@@ -78,8 +80,8 @@ function upload() {
 	}
 
 	//cek ekstensi file gambar
-	$ekstensiGambarValid = ['jpg','jpeg','png'];
-	$ekstensiGambar = explode('.',$namaFile);
+	$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+	$ekstensiGambar = explode('.', $namaFile);
 	$ekstensiGambar = strtolower(end($ekstensiGambar));
 	if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
 		echo "<script>
@@ -101,12 +103,13 @@ function upload() {
 	$namaFileBaru .= '.';
 	$namaFileBaru .= $ekstensiGambar;
 
-	move_uploaded_file($tmpName, 'images/'.$namaFileBaru); 
+	move_uploaded_file($tmpName, 'images/' . $namaFileBaru);
 
 	return $namaFileBaru;
 }
 
-function uploadnota() {
+function uploadnota()
+{
 	$namaFile = $_FILES['gambar']['name'];
 	$ukuranFile = $_FILES['gambar']['size'];
 	$error = $_FILES['gambar']['error'];
@@ -122,8 +125,8 @@ function uploadnota() {
 	}
 
 	//cek ekstensi file gambar
-	$ekstensiGambarValid = ['jpg','jpeg','png'];
-	$ekstensiGambar = explode('.',$namaFile);
+	$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+	$ekstensiGambar = explode('.', $namaFile);
 	$ekstensiGambar = strtolower(end($ekstensiGambar));
 	if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
 		echo "<script>
@@ -147,137 +150,150 @@ function uploadnota() {
 	$namaFileBaru .= '.';
 	$namaFileBaru .= $ekstensiGambar;
 
-	move_uploaded_file($tmpName, '../images/nota/'.$namaFileBaru); 
+	move_uploaded_file($tmpName, '../images/nota/' . $namaFileBaru);
 
 	return $namaFileBaru;
 }
 
 
-function hapuskaryawan ($id) {
+function hapuskaryawan($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM karyawan WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapuskas ($id) {
+function hapuskas($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM kas WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapuskasbesar ($id) {
+function hapuskasbesar($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM kasbesar WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapusmaintenance ($id) {
+function hapusmaintenance($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM maintenance WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
-function hapusproyekjt ($id) {
+function hapusproyekjt($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM proyekjt WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapuspengeluarantetap ($id) {
+function hapuspengeluarantetap($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM pengeluarantetap WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapussuplier ($id) {
+function hapussuplier($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM supplier WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapususer ($id) {
+function hapususer($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM user WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
 
-function hapusmenu ($id) {
+function hapusmenu($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM user_menu WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
-function hapusunit ($id) {
+function hapusunit($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
 	$nof = query("SELECT * FROM beliunit WHERE id = '$id'  ")[0];
 	$nf = $nof['nofaktur'];
 	$queryReport = "SELECT * FROM pembelianunit WHERE nofaktur = '$nf' ";
-    $sqlReport = mysqli_query($conn, $queryReport);
+	$sqlReport = mysqli_query($conn, $queryReport);
 
-    while ($dtReport = mysqli_fetch_array($sqlReport))
-    {   
-    	$idd = $dtReport["id"];
-    	mysqli_query($conn, "DELETE FROM pembelianunit WHERE id = $idd");
-    }
-	
+	while ($dtReport = mysqli_fetch_array($sqlReport)) {
+		$idd = $dtReport["id"];
+		mysqli_query($conn, "DELETE FROM pembelianunit WHERE id = $idd");
+	}
+
 	mysqli_query($conn, "DELETE FROM beliunit WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
-function hapusmarketing ($id) {
+function hapusmarketing($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM marketing WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
-function hapusproposal ($id) {
+function hapusproposal($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM proposal WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
-function hapusproyek ($id) {
+function hapusproyek($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM proyek WHERE id = $id");
 
 	return mysqli_affected_rows($conn);
 }
-function hapuspembayaran ($id) {
+function hapuspembayaran($id)
+{
 	// ambil data dari tiap elemen form
 	global $conn;
-	
+
 	mysqli_query($conn, "DELETE FROM pembayaranpmr WHERE id = $id");
 
 	return mysqli_affected_rows($conn);

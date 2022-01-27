@@ -1,7 +1,7 @@
 <?php
 require '../include/fungsi.php';
 require '../include/fungsi_rupiah.php';
-require '/office/auth.php';
+require 'controllers/c_auth.php';
 require '../include/header.php';
 require '../include/topbar.php';
 require '../include/sidebar.php';

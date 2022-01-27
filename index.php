@@ -1,5 +1,5 @@
 <?php
-require 'controllers/login.php';
+require 'c_login.php';
 ?>
 <!DOCTYPE html>
 <html>

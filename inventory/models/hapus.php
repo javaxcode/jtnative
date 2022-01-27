@@ -1,5 +1,5 @@
 <?php
-require '../include/fungsi.php';
+require '../../include/fungsi.php';
 
 if ($_GET["code"] == "hapusunit") {
 	$id = $_GET["id"];

@@ -6,7 +6,7 @@ require '../include/header.php';
 require '../include/topbar.php';
 require '../include/sidebar.php';
 require 'controllers/c_proposal.php';
-
+echo $kodebulan;
 ?>
 
 <!-- ============================================================== -->
