@@ -8,14 +8,14 @@ if ($_GET["code"] == "hapusunit") {
 	if (hapusunit($id) > 0) {
 		echo "          
 	            <script>
-	                document.location.href = '../inventory/unit';
+	                document.location.href = '../unit';
 	            </script>
 	            ";
 	} else {
 		echo "
 	            <script>
 	                alert('data gagal dihapus');
-	                document.location.href = '../inventory/unit';
+	                document.location.href = '../unit';
 	            </script>
 	            ";
 	}

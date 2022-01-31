@@ -1,11 +1,11 @@
-<?php 
+<?php
 require '../include/fungsi.php';
 
 if (isset($_POST["edituser"])) {
-	$id = htmlspecialchars($_POST["id"]);
-	$nama = htmlspecialchars($_POST["name"]);
-	$email = htmlspecialchars($_POST["email"]);
-	$aktif = htmlspecialchars($_POST["active"]);
+    $id = htmlspecialchars($_POST["id"]);
+    $nama = htmlspecialchars($_POST["name"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $aktif = htmlspecialchars($_POST["active"]);
     $userlevel = htmlspecialchars($_POST["role"]);
 
     //query edit data
@@ -17,23 +17,23 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
-                document.location.href = '../admin/user';                
+                document.location.href = '../user';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Edit Proyek Gagal');             
-                document.location.href = '../admin/user';                
+                document.location.href = '../user';                
             </script>
             ";
     }
-}elseif (isset($_POST["editmenu"])) {
+} elseif (isset($_POST["editmenu"])) {
     $id = htmlspecialchars($_POST["id"]);
     $menu_id = htmlspecialchars($_POST["menu"]);
     $title = htmlspecialchars($_POST["submenu"]);
@@ -51,23 +51,23 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
-                document.location.href = '../admin/menu';                
+                document.location.href = '../menu';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Edit Proyek Gagal');             
-                document.location.href = '../admin/menu';                
+                document.location.href = '../menu';                
             </script>
             ";
     }
-}elseif (isset($_POST["editsubmenu2"])) {
+} elseif (isset($_POST["editsubmenu2"])) {
     $id = htmlspecialchars($_POST["id"]);
     $menu_id = htmlspecialchars($_POST["menu"]);
     $submenu_id = htmlspecialchars($_POST["submenu"]);
@@ -85,62 +85,61 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
-                document.location.href = '../admin/submenu';                
+                document.location.href = '../submenu';                
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Edit Proyek Gagal');             
-                document.location.href = '../admin/submenu';                
+                document.location.href = '../submenu';                
             </script>
             ";
     }
-}elseif (isset($_POST["editfaktur"])) {
+} elseif (isset($_POST["editfaktur"])) {
     $id = htmlspecialchars($_POST["id"]);
     $t = htmlspecialchars($_POST["tanggal"]);
-    $ta = substr($t,3,2);
-    $bu = substr($t,0,2);
-    $tah = substr($t,6,4);
-    $tang = $tah.'-'.$bu.'-'.$ta;
-    $tanggal = date('Y-m-d',strtotime($tang));
+    $ta = substr($t, 3, 2);
+    $bu = substr($t, 0, 2);
+    $tah = substr($t, 6, 4);
+    $tang = $tah . '-' . $bu . '-' . $ta;
+    $tanggal = date('Y-m-d', strtotime($tang));
     $tjt = htmlspecialchars($_POST["jatuhtempo"]);
-    $tajt = substr($tjt,3,2);
-    $bujt = substr($tjt,0,2);
-    $tahjt = substr($tjt,6,4);
-    $tangjt = $tahjt.'-'.$bujt.'-'.$tajt;
-    $tanggaljt = date('Y-m-d',strtotime($tangjt));
+    $tajt = substr($tjt, 3, 2);
+    $bujt = substr($tjt, 0, 2);
+    $tahjt = substr($tjt, 6, 4);
+    $tangjt = $tahjt . '-' . $bujt . '-' . $tajt;
+    $tanggaljt = date('Y-m-d', strtotime($tangjt));
     $nofaktur = $_POST["nofaktur"];
     $supplier = $_POST["supplier"];
 
     $queryReport = "SELECT * FROM pembelianunit WHERE nofaktur = '$nofaktur' ";
     $sqlReport = mysqli_query($conn, $queryReport);
 
-    while ($dtReport = mysqli_fetch_array($sqlReport))
-    {   
-       $idd = $dtReport["id"];
-       $nof = $dtReport["nofaktur"];
-       $t = htmlspecialchars($_POST["tanggal"]);
-        $ta = substr($t,3,2);
-        $bu = substr($t,0,2);
-        $tah = substr($t,6,4);
-        $tang = $tah.'-'.$bu.'-'.$ta;
-        $tanggal = date('Y-m-d',strtotime($tang));
+    while ($dtReport = mysqli_fetch_array($sqlReport)) {
+        $idd = $dtReport["id"];
+        $nof = $dtReport["nofaktur"];
+        $t = htmlspecialchars($_POST["tanggal"]);
+        $ta = substr($t, 3, 2);
+        $bu = substr($t, 0, 2);
+        $tah = substr($t, 6, 4);
+        $tang = $tah . '-' . $bu . '-' . $ta;
+        $tanggal = date('Y-m-d', strtotime($tang));
         $tjt = htmlspecialchars($_POST["jatuhtempo"]);
-        $tajt = substr($tjt,3,2);
-        $bujt = substr($tjt,0,2);
-        $tahjt = substr($tjt,6,4);
-        $tangjt = $tahjt.'-'.$bujt.'-'.$tajt;
-        $tanggaljt = date('Y-m-d',strtotime($tangjt));
+        $tajt = substr($tjt, 3, 2);
+        $bujt = substr($tjt, 0, 2);
+        $tahjt = substr($tjt, 6, 4);
+        $tangjt = $tahjt . '-' . $bujt . '-' . $tajt;
+        $tanggaljt = date('Y-m-d', strtotime($tangjt));
         $nofaktur = $_POST["nofaktur"];
         $supplier = $_POST["supplier"];
-       
-       //query edit data
+
+        //query edit data
         $query = "UPDATE pembelianunit SET
                     tanggal = '$tanggal',
                     jatuhtempo = '$tanggaljt',
@@ -151,7 +150,7 @@ if (isset($_POST["edituser"])) {
         mysqli_query($conn, $query);
     }
 
-    
+
     //query edit data
     $query = "UPDATE beliunit SET
                 tanggal = '$tanggal',
@@ -161,9 +160,9 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
                 
@@ -178,7 +177,7 @@ if (isset($_POST["edituser"])) {
             </script>
             ";
     }
-}elseif (isset($_POST["editproposal"])) {
+} elseif (isset($_POST["editproposal"])) {
     $id = htmlspecialchars($_POST["id"]);
     $namaklien = htmlspecialchars($_POST["namaklien"]);
     $outlet = htmlspecialchars($_POST["outlet"]);
@@ -186,7 +185,7 @@ if (isset($_POST["edituser"])) {
     $pekerjaan = htmlspecialchars($_POST["pekerjaan"]);
     $nilaiproyek = htmlspecialchars($_POST["nilaiproyek"]);
     $keterangan = "";
-    
+
     //echo $id." - ".$namaklien." - ".$outlet." - ".$tempat." - ".$pekerjaan." - ".$nilaiproyek ;
 
     //query edit data
@@ -199,9 +198,9 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
                 document.location.href = '../office/proposal';                
@@ -215,16 +214,16 @@ if (isset($_POST["edituser"])) {
             </script>
             ";
     }
-}elseif (isset($_POST["uploadnota"])) {
+} elseif (isset($_POST["uploadnota"])) {
     $id = $_POST["id"];
 
     // $gambar = $_FILES['gambar']['name'];
 
     // if ($gambar!="") {
-        $gambar = uploadnota();
-        if ($gambar=="") {
-            return false;
-        }
+    $gambar = uploadnota();
+    if ($gambar == "") {
+        return false;
+    }
     // }
 
     $status = 1;
@@ -235,9 +234,9 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
                 
@@ -252,7 +251,7 @@ if (isset($_POST["edituser"])) {
             </script>
             ";
     }
-}elseif (isset($_POST["editjumlahls"])) {
+} elseif (isset($_POST["editjumlahls"])) {
     $id = $_POST["id"];
 
     //$tanggal = $_POST["tanggal"];
@@ -264,9 +263,9 @@ if (isset($_POST["edituser"])) {
         WHERE id = $id
     ";
     mysqli_query($conn, $query);
-    
+
     //cek apakh data berhasil di tambahkan
-    if( mysqli_affected_rows($conn) > 0 ) {
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
                 

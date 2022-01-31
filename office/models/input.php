@@ -67,7 +67,7 @@ if (isset($_POST["inputmarketing"])) {
         $newkodetr = "PJT" . $t . $bul . "0" . $tatl;
     }
 
-    $namaklien = htmlspecialchars($_POST["namaklien"]);
+    $namaklien = htmlspecialchars($_POST["marketing"]);
     $outlet = htmlspecialchars($_POST["outlet"]);
     $tempat = htmlspecialchars($_POST["tempat"]);
     $pekerjaan = htmlspecialchars($_POST["pekerjaan"]);
