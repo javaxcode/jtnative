@@ -14,13 +14,12 @@ $s = $_SESSION['email'];
     $userlevel = $urole["role"];
 
 if (!isset($_SESSION['email'])) {
-    header("location:../index"); // jika belum login, maka dikembalikan ke index
+    header("location:../../index"); // jika belum login, maka dikembalikan ke index
     exit; 
 }elseif ($ur>3) {
-    header("location:../forbidden"); // cek role id, maka diarahkan ke forbidden
+    header("location:../../forbidden"); // cek role id, maka diarahkan ke forbidden
     exit; 
 }
 
 $month = date ('m');
 $year = date ('Y');
-?>
